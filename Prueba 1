@@ -1,0 +1,46 @@
+class Ahorcado:
+    
+    def __init__(self, jugador,palabra):
+        self.jugador=jugador
+        self.palabra=[]
+        for i in palabra:
+            self.palabra.append(i.upper())  #hago que la palabra sea una listacon cada letra en mayuscula
+        self.vidas=6  #defino la cantidad de veces que me puedo equivocar (vidas=6)?
+        self.tablero=[] 
+        for i in range(len(self.palabra)):
+                self.tablero.append('_')    #genero un tablero con '_' para la cantidad de letras de la palabra
+        self.terminar=False  #genero un booleano que cambia si termina el juego
+        print('\n'*100,f'Tablero ({len(self.palabra)} letras):  ',self.tablero,'\n'*30)
+    
+    
+    def agregar_letra(self,letra):
+        letra=letra.upper()
+        if letra in self.palabra:
+            for e,l in enumerate(self.palabra):
+                if l == letra:
+                    self.tablero[e]=l  #modifico el tablero si la letra esta en la palabra
+        else:
+            self.vidas-=1  #si la letra no esta pierdo una vida
+        print('\n'*30,f'Tablero ({len(self.palabra)} letras):  ',self.tablero,'\n'*5,'Vidas:  ',self.vidas,'\n'*30)
+    
+    
+    def perdiste(self):
+        if self.vidas==0:
+            print('\n'*10,'Perdiste :(','\n'*10, f'La palabra era:\n\n {self.palabra}','\n'*10)
+            self.terminar=True
+    # si me quedo sin vidas pierdo y salgo del loop con el terminar=True
+    
+    
+    def ganaste(self):
+        if self.tablero == self.palabra:
+            print('\n'*10,'Ganaste :)','\n'*10, f'La palabra era:\n\n {self.palabra}','\n'*10)
+            self.terminar=True
+     # si tengo todas las letras de la palabra salgo del loop con el terminar=True
+           
+     
+rama=Ahorcado('Rama', input('Introducir palabra a adivinar: '))
+
+while rama.terminar == False:
+    rama.agregar_letra(input('Letra a agregar: '))
+    rama.ganaste()
+    rama.perdiste()
