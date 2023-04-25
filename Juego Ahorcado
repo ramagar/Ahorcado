@@ -1,16 +1,19 @@
+'''Ahorcado para que revise tuquito'''
+
+
 class Ahorcado:
     
     def __init__(self, jugador,palabra):
-        self.jugador=jugador
+        self.jugador=jugador  #esto en realidad lo puse al pedo porque no lo voy a usar xd
         self.palabra=[]
         for i in palabra:
-            self.palabra.append(i.upper())  #hago que la palabra sea una listacon cada letra en mayuscula
+            self.palabra.append(i.upper())  #hago que la palabra sea una lista con cada letra en mayuscula
         self.vidas=6  #defino la cantidad de veces que me puedo equivocar (vidas=6)?
         self.tablero=[] 
         for i in range(len(self.palabra)):
                 self.tablero.append('_')    #genero un tablero con '_' para la cantidad de letras de la palabra
         self.terminar=False  #genero un booleano que cambia si termina el juego
-        print('\n'*100,f'Tablero ({len(self.palabra)} letras):  ',self.tablero,'\n'*30)
+        print('\n'*100,f'Tablero ({len(self.palabra)} letras):  ',self.tablero,'\n'*30) #estos espacios los pongo para que se visualize chetardo en mi IDE
     
     
     def agregar_letra(self,letra):
@@ -38,9 +41,9 @@ class Ahorcado:
      # si tengo todas las letras de la palabra salgo del loop con el terminar=True
            
      
-rama=Ahorcado('Rama', input('Introducir palabra a adivinar: '))
+rama=Ahorcado(input('Nombre de Jugador: '), input('Introducir palabra a adivinar: '))
 
-while rama.terminar == False:
+while rama.terminar == False:    #esto no sabia como hacerlo asi que lo hice asi :/, cuando terminar es True sale del ciclo
     rama.agregar_letra(input('Letra a agregar: '))
     rama.ganaste()
     rama.perdiste()
